@@ -1,0 +1,566 @@
+/* ==========================================================================
+   SoulSpace — Global stylesheet
+   Design tokens, reset, base typography, shared primitives (buttons, cards,
+   section shells, reveal animations) used across every component.
+   Component-specific rules live in their own file under /src/styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Core palette (brand) */
+  --bg: #e1d3f2;
+  --surface: #ffffff; /* cards/panels float on --bg, so they keep a crisp white surface */
+  --lavender: #d1acfc;
+  --pink: #fbcfe8;
+  --ink: #3b304a;
+  --muted: #6b6475;
+
+  /* Derived tints — kept close to the brand hues so the page reads as one system */
+  --lavender-50: #f2e7fe;
+  --lavender-100: #e6d3fd;
+  --lavender-200: var(--lavender);
+  --lavender-400: #a978e6;
+  --lavender-600: #6f42b8; /* accessible accent for links/eyebrows on white */
+
+  --pink-50: #fff7fb;
+  --pink-100: #fde9f3;
+  --pink-200: var(--pink);
+  --pink-600: #b2557f;
+
+  --ink-80: rgba(59, 48, 74, 0.8);
+  --line: rgba(59, 48, 74, 0.09);
+  --line-strong: rgba(59, 48, 74, 0.16);
+
+  /* Typography */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+
+  --step--1: clamp(0.82rem, 0.79rem + 0.14vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --step-1: clamp(1.15rem, 1.08rem + 0.34vw, 1.35rem);
+  --step-2: clamp(1.4rem, 1.26rem + 0.68vw, 1.85rem);
+  --step-3: clamp(1.75rem, 1.5rem + 1.2vw, 2.6rem);
+  --step-4: clamp(2.15rem, 1.7rem + 2.1vw, 3.7rem);
+  --step-5: clamp(2.7rem, 1.9rem + 3.6vw, 5.4rem);
+
+  /* Spacing scale */
+  --sp-1: 0.4rem;
+  --sp-2: 0.8rem;
+  --sp-3: 1.2rem;
+  --sp-4: 1.8rem;
+  --sp-5: 2.6rem;
+  --sp-6: 3.6rem;
+  --sp-7: 5rem;
+  --sp-8: 7rem;
+
+  /* Radii — flat, square-cornered throughout; --r-pill is reserved for
+     genuinely round elements (dots, avatars), never cards or buttons. */
+  --r-sm: 0px;
+  --r-md: 0px;
+  --r-lg: 0px;
+  --r-xl: 0px;
+  --r-pill: 999px;
+
+  /* Shadows — flat by default; borders carry the edge instead of blur/glow */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 0.45s;
+
+  /* Layout */
+  --container: 1200px;
+  --container-narrow: 780px;
+  --nav-h: 76px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky navbar */
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Visible, on-brand focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--lavender-600);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--r-sm) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout primitives
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: min(100% - 2rem, var(--container));
+  }
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+  position: relative;
+}
+
+/* Tinted section variants — used sparingly to give the long page a rhythm */
+.section--tint,
+.section--lavender,
+.section--blush {
+  background: var(--bg);
+}
+
+.section__head {
+  max-width: 62ch;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.section__head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Eyebrow label — the dot pulses on the same breathing cadence as the hero */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lavender-600);
+  margin-bottom: var(--sp-3);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pink-600);
+  flex: none;
+  animation: breathe-dot 10s var(--ease-soft) infinite;
+}
+
+.section__title {
+  font-size: var(--step-4);
+  font-variation-settings: "SOFT" 50, "WONK" 1, "opsz" 100;
+}
+
+.section__title--sm {
+  font-size: var(--step-3);
+}
+
+.section__lead {
+  margin-top: var(--sp-3);
+  font-size: var(--step-1);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* A stack of short paragraphs — used by the copy-led sections */
+.prose > * + * {
+  margin-top: 1.15em;
+}
+.prose p {
+  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.7;
+}
+.prose p.prose__emphasis {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. Cards (shared shell)
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--lavender-400);
+}
+
+/* Frosted variant, used over tinted backgrounds — flat, no blur */
+.card--glass {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.card__title {
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+
+.card__text {
+  color: var(--muted);
+  font-size: var(--step-0);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: #fff;
+  --btn-border: transparent;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.9rem 1.7rem;
+  border-radius: 0;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+/* Primary — solid ink block, flat like the buttons across the reference site */
+.btn--primary {
+  --btn-bg: var(--ink);
+  --btn-fg: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  --btn-bg: #2f2640;
+}
+
+/* Secondary — outlined, fills with lavender on hover */
+.btn--secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-border: var(--line-strong);
+}
+.btn--secondary:hover {
+  --btn-bg: var(--lavender-100);
+  --btn-border: var(--lavender-200);
+}
+
+/* Soft — filled lavender, for in-card actions */
+.btn--soft {
+  --btn-bg: var(--lavender-100);
+  --btn-fg: var(--ink);
+  --btn-border: var(--lavender-200);
+}
+.btn--soft:hover {
+  --btn-bg: var(--lavender-200);
+}
+
+/* Ghost — text-level action */
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--lavender-600);
+  padding-inline: 0.4rem;
+}
+.btn--ghost:hover {
+  --btn-fg: var(--ink);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.btn--sm {
+  padding: 0.6rem 1.15rem;
+  font-size: var(--step--1);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* Group of actions */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+.btn-row--center {
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   6. Grids
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Two-column media + copy split, reused by several sections */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.split--reverse .split__media {
+  order: -1;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .split--reverse .split__media {
+    order: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Scroll reveal
+   -------------------------------------------------------------------------- */
+/* The hidden state carries the transform; the visible state deliberately
+   declares none, so hover transforms on the same element (cards, buttons)
+   are not cancelled out by an equal-specificity `transform: none`. */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal:not(.is-visible) {
+  transform: translateY(26px);
+}
+
+.reveal--fade:not(.is-visible) {
+  transform: none;
+}
+
+.reveal--scale:not(.is-visible) {
+  transform: translateY(20px) scale(0.98);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   8. Ambient shapes & keyframes
+   -------------------------------------------------------------------------- */
+
+/* The signature motion of the site: a 10s cycle paced like a guided breath —
+   ~4s expanding (inhale), ~6s settling (exhale). Used by the hero aurora
+   and echoed by the eyebrow dot. */
+@keyframes breathe {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.55;
+  }
+  40% {
+    transform: scale(1.14) translate3d(0, -1.5%, 0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.55;
+  }
+}
+
+@keyframes breathe-dot {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  40% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entrance sequence used by the hero — staggered via inline --i */
+.rise {
+  opacity: 0;
+  animation: rise-in 0.9s var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+/* --------------------------------------------------------------------------
+   9. Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .rise {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

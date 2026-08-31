@@ -1,0 +1,155 @@
+/* ImageCarousel — reusable slider used across the site */
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel__viewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--carousel-aspect, 4 / 3);
+  border-radius: var(--r-lg);
+  background: var(--lavender-100);
+  box-shadow: var(--shadow-lg);
+  touch-action: pan-y; /* allow vertical page scroll, capture horizontal swipes */
+  cursor: grab;
+}
+
+.carousel.is-dragging .carousel__viewport {
+  cursor: grabbing;
+}
+
+.carousel--portrait .carousel__viewport {
+  border-radius: var(--r-xl);
+}
+
+.carousel__track {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  transition: transform 0.85s var(--ease);
+}
+
+.carousel.is-dragging .carousel__track {
+  transition: none;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--lavender-100);
+}
+
+.carousel__veil {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(59, 48, 74, 0.28) 0%,
+    rgba(59, 48, 74, 0.06) 55%,
+    transparent 100%
+  );
+}
+
+/* ---- Arrows ------------------------------------------------------------ */
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: var(--shadow-md);
+
+  opacity: 0;
+  transition: opacity 0.35s var(--ease), background-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.carousel__arrow--prev {
+  left: 14px;
+}
+.carousel__arrow--next {
+  right: 14px;
+}
+
+/* Reveal controls on hover or keyboard focus; always visible on touch. */
+.carousel:hover .carousel__arrow,
+.carousel:focus-within .carousel__arrow {
+  opacity: 1;
+}
+
+.carousel__arrow:hover {
+  background: var(--surface);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.carousel__arrow:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .carousel__arrow {
+    opacity: 1;
+  }
+}
+
+/* ---- Dots -------------------------------------------------------------- */
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--sp-3);
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: var(--r-pill);
+  background: var(--lavender-200);
+  border: none;
+  cursor: pointer;
+  transition: width 0.4s var(--ease), background-color 0.4s var(--ease);
+}
+
+.carousel__dot:hover {
+  background: var(--lavender-400);
+}
+
+.carousel__dot.is-active {
+  width: 26px;
+  background: var(--lavender-600);
+}
+
+@media (max-width: 600px) {
+  .carousel__arrow {
+    width: 38px;
+    height: 38px;
+  }
+  .carousel__arrow--prev {
+    left: 8px;
+  }
+  .carousel__arrow--next {
+    right: 8px;
+  }
+}

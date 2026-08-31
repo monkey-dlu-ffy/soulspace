@@ -1,0 +1,111 @@
+/* Professionals — profile cards with their own portrait carousels */
+
+.professionals__intro {
+  max-width: 68ch;
+  margin: calc(-1 * var(--sp-4)) auto var(--sp-5);
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.7;
+}
+
+.pro-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xl);
+  padding: 0.7rem 0.7rem 0;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s var(--ease);
+}
+
+.pro-card:hover {
+  border-color: var(--lavender-400);
+}
+
+.pro-card__media .carousel__viewport {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pro-card__body {
+  padding: var(--sp-4) 0.9rem clamp(1.4rem, 2.5vw, 1.8rem);
+}
+
+.pro-card__name {
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.pro-card__role {
+  color: var(--lavender-600);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pro-card__focus {
+  margin: var(--sp-3) 0 var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--line);
+}
+
+.pro-card__focus-label {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.pro-card__focus-value {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.pro-card__actions .btn {
+  flex: 1 1 auto;
+}
+
+/* ---- Helper strip ------------------------------------------------------- */
+.professionals__helper {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border-radius: var(--r-xl);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-md);
+}
+
+.professionals__helper-title {
+  font-size: var(--step-2);
+  margin-bottom: 0.35rem;
+}
+
+.professionals__helper-text {
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .professionals {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .professionals {
+    grid-template-columns: 1fr;
+  }
+  .professionals__helper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

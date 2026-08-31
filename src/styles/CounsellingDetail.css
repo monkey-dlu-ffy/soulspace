@@ -1,0 +1,109 @@
+/* CounsellingDetail — shared layout for the online and offline sections */
+
+.counselling__lead {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  color: var(--lavender-600);
+}
+
+.counselling__blocks {
+  margin: var(--sp-4) 0 var(--sp-5);
+  display: grid;
+  gap: 1.1rem;
+}
+
+.counselling__text {
+  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.counselling__emphasis {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  color: var(--ink);
+}
+
+.counselling__label {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: var(--step-1);
+}
+
+/* ---- Options list ------------------------------------------------------- */
+.counselling__list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.counselling__list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--lavender-50);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  transition: background-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.counselling__list li:hover {
+  background: var(--lavender-100);
+  transform: translateX(4px);
+}
+
+.counselling__bullet {
+  color: var(--pink-600);
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+/* ---- Cadence block ------------------------------------------------------
+   Four short instructions that describe arriving. Set larger and spaced
+   apart so they're read at the pace they describe. */
+.counselling__cadence {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--pink);
+}
+
+.counselling__cadence li {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  color: var(--ink);
+  opacity: 0;
+}
+
+/* Gated on the parent reveal so the four lines stagger when they're scrolled
+   to, not silently on page load while still off screen. */
+.reveal.is-visible .counselling__cadence li {
+  animation: rise-in 0.7s var(--ease) forwards;
+  animation-delay: calc(var(--i) * 220ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .counselling__cadence li {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .counselling .split__media {
+    max-width: 560px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}

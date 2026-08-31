@@ -1,0 +1,97 @@
+/* ConcernCards — the nine areas of support, plus the open "Other" card */
+
+.concerns__subline {
+  margin: calc(-1 * var(--sp-4)) auto var(--sp-5);
+  max-width: 62ch;
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--step-1);
+}
+
+.concern-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* A faint brand wash that warms the card on hover. */
+.concern-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    130% 100% at 0% 0%,
+    rgba(209, 172, 252, 0.4) 0%,
+    transparent 60%
+  );
+  transition: opacity 0.5s var(--ease);
+}
+
+.concern-card:hover::after {
+  opacity: 1;
+}
+
+.concern-card__badge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--sp-3);
+  border-radius: 0;
+  color: var(--lavender-600);
+  background: var(--lavender-100);
+  transition: background-color 0.45s var(--ease), color 0.45s var(--ease),
+    transform 0.45s var(--ease);
+}
+
+.concern-card:hover .concern-card__badge {
+  background: var(--pink-100);
+  color: var(--pink-600);
+  transform: translateY(-2px) rotate(-4deg);
+}
+
+/* ---- Other Concerns ----------------------------------------------------- */
+.concern-other {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--r-xl);
+  border: 1px dashed var(--lavender-400);
+  background: linear-gradient(120deg, var(--lavender-50) 0%, var(--pink-50) 100%);
+}
+
+.concern-other__copy {
+  max-width: 58ch;
+}
+
+.concern-other__title {
+  font-size: var(--step-2);
+  margin-bottom: 0.5rem;
+}
+
+.concern-other__lead {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  color: var(--ink);
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  margin-bottom: 0.35rem;
+}
+
+.concern-other__text {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 620px) {
+  .concern-other {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

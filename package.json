@@ -1,0 +1,21 @@
+{
+  "name": "soulspace",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SoulSpace — a professional psychological counselling centre. Online and offline counselling website.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

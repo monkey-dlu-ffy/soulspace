@@ -1,0 +1,140 @@
+/* HowItWorks — four-step vertical timeline */
+
+.steps {
+  --step-gap: clamp(2rem, 4vw, 3rem);
+  --marker-size: 68px;
+
+  position: relative;
+  max-width: 860px;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--step-gap);
+  padding-left: 0;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--marker-size) 1fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: start;
+}
+
+/* Each step draws its own connector down to the next marker, so the rail
+   always ends exactly at step 04 rather than dangling past the last item. */
+.step::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--marker-size) / 2 - 1px);
+  top: var(--marker-size);
+  bottom: calc(-1 * var(--step-gap));
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--lavender) 0%, var(--pink) 100%);
+
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.9s var(--ease);
+  transition-delay: calc(var(--i, 0) * 160ms);
+}
+
+.steps.is-drawn .step::before {
+  transform: scaleY(1);
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+/* ---- Marker ------------------------------------------------------------- */
+.step__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+
+.step:hover .step__marker {
+  transform: scale(1.06);
+  border-color: var(--lavender-200);
+  box-shadow: var(--shadow-md);
+}
+
+.step__number {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  color: var(--lavender-600);
+}
+
+/* ---- Body --------------------------------------------------------------- */
+.step__body {
+  padding-top: 0.85rem;
+}
+
+.step__title {
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.7rem;
+}
+
+/* The numeral is repeated inline only on narrow screens, where the circular
+   marker is hidden. */
+.step__number-inline {
+  display: none;
+  color: var(--lavender-600);
+}
+
+.step__text {
+  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.65;
+}
+
+.step__text + .step__text {
+  margin-top: 0.15rem;
+}
+
+.steps__cta {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 620px) {
+  .step::before {
+    display: none;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: var(--sp-4);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step__marker {
+    display: none;
+  }
+
+  .step__number-inline {
+    display: inline;
+  }
+
+  .step__body {
+    padding-top: 0;
+  }
+}

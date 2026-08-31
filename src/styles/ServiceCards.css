@@ -1,0 +1,66 @@
+/* ServiceCards — the two counselling formats */
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* The inner carousel already carries a radius and shadow; reset both so the
+   image sits flush inside the card frame. */
+.service-card__media .carousel__viewport {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.service-card__media .carousel {
+  pointer-events: none; /* the whole card is the target, not the slider */
+}
+
+.service-card__media img {
+  transition: transform 1.4s var(--ease), opacity 0.9s var(--ease);
+}
+
+.service-card:hover .service-card__media img {
+  transform: scale(1.045);
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.service-card__title {
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+}
+
+.service-card__text {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.service-card__tagline {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  color: var(--lavender-600);
+  letter-spacing: -0.01em;
+}
+
+.service-card .btn {
+  margin-top: 0.5rem;
+}

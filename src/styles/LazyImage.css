@@ -1,0 +1,41 @@
+/* LazyImage — fade-in on decode, on-brand gradient fallback on error */
+
+.lazy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.9s var(--ease), transform 1.2s var(--ease);
+  background: var(--lavender-100);
+}
+
+.lazy-image.is-loaded {
+  opacity: 1;
+  transform: none;
+}
+
+/* Fallback panel: a soft lavender/pink field so a missing photograph still
+   reads as a deliberate part of the design. */
+.lazy-image--fallback {
+  opacity: 1;
+  transform: none;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      120% 90% at 20% 15%,
+      var(--pink-100) 0%,
+      transparent 60%
+    ),
+    radial-gradient(100% 80% at 85% 80%, var(--lavender-200) 0%, transparent 65%),
+    linear-gradient(160deg, var(--lavender-50) 0%, var(--pink-50) 100%);
+}
+
+.lazy-image__glyph {
+  width: clamp(48px, 16%, 96px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.25);
+  animation: breathe 10s var(--ease-soft) infinite;
+}

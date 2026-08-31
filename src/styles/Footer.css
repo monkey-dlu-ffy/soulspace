@@ -1,0 +1,97 @@
+/* Footer — brand, actions, full navigation */
+
+.footer {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 3.5rem);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: var(--sp-5);
+  align-items: start;
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.footer__actions {
+  justify-content: flex-start;
+}
+
+.footer__mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: var(--sp-3);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, var(--pink) 0%, var(--lavender) 70%);
+  box-shadow: 0 0 0 8px rgba(209, 172, 252, 0.28);
+  animation: breathe 10s var(--ease-soft) infinite;
+}
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  color: var(--ink);
+}
+
+.footer__tagline {
+  margin-top: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-variation-settings: "SOFT" 50, "WONK" 1;
+  color: var(--ink);
+}
+
+.footer__descriptor {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: var(--step-0);
+}
+
+/* ---- Links -------------------------------------------------------------- */
+.footer__nav {
+  padding-top: 0.3rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.footer__links li {
+  display: flex;
+  align-items: center;
+}
+
+.footer__links a {
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__links a:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+}

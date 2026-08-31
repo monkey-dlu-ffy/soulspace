@@ -1,0 +1,26 @@
+/* WhySoulSpace — six commitment cards on a lavender field */
+
+.why-card {
+  position: relative;
+  padding-top: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.why-card__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: var(--sp-3);
+  border-radius: 0;
+  font-size: 1.55rem;
+  line-height: 1;
+
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.why-card:hover .why-card__icon {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: var(--shadow-md);
+}
