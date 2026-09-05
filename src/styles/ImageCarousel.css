@@ -79,9 +79,9 @@
   border: 1px solid rgba(255, 255, 255, 1);
   box-shadow: var(--shadow-md);
 
-  opacity: 0;
-  transition: opacity 0.35s var(--ease), background-color 0.35s var(--ease),
-    transform 0.35s var(--ease);
+  /* Always visible: the scroll affordance should never depend on hovering. */
+  opacity: 1;
+  transition: background-color 0.35s var(--ease), transform 0.35s var(--ease);
 }
 
 .carousel__arrow--prev {
@@ -91,25 +91,9 @@
   right: 14px;
 }
 
-/* Reveal controls on hover or keyboard focus; always visible on touch. */
-.carousel:hover .carousel__arrow,
-.carousel:focus-within .carousel__arrow {
-  opacity: 1;
-}
-
 .carousel__arrow:hover {
   background: var(--surface);
   transform: translateY(-50%) scale(1.06);
-}
-
-.carousel__arrow:focus-visible {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .carousel__arrow {
-    opacity: 1;
-  }
 }
 
 /* ---- Dots -------------------------------------------------------------- */

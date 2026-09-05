@@ -2,6 +2,7 @@ import HeroSection from "../components/HeroSection";
 import ConcernCards from "../components/ConcernCards";
 import WhySoulSpace from "../components/WhySoulSpace";
 import HowItWorks from "../components/HowItWorks";
+import SessionInfo from "../components/SessionInfo";
 import FAQ from "../components/FAQ";
 import FinalCTA from "../components/FinalCTA";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <WhySoulSpace />
       <ConcernCards />
       <HowItWorks />
+      <SessionInfo />
       <FAQ />
       <FinalCTA />
     </main>

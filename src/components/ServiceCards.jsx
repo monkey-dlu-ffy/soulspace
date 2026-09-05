@@ -56,8 +56,6 @@ export default function ServiceCards() {
                 images={service.images}
                 aspect="16 / 10"
                 interval={5500 + i * 700}
-                showArrows={false}
-                showDots={false}
                 label={service.carouselLabel}
               />
             </div>

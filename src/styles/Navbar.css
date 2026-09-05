@@ -14,12 +14,15 @@
   background: rgba(255, 255, 255, 1);
 }
 
+/* The bar carries ten top-level destinations, so it is allowed a wider
+   measure than the 1200px body container. */
 .navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-3);
   min-height: var(--nav-h);
+  width: min(100% - 2.5rem, 1400px);
 }
 
 /* ---- Brand -------------------------------------------------------------- */
@@ -223,14 +226,14 @@
 }
 
 /* ---- Breakpoints -------------------------------------------------------- */
-@media (max-width: 1080px) {
+@media (max-width: 1400px) {
   .navbar__link {
-    padding-inline: 0.55rem;
-    font-size: 0.88rem;
+    padding-inline: 0.5rem;
+    font-size: 0.86rem;
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1240px) {
   .navbar__nav,
   .navbar__cta {
     display: none;

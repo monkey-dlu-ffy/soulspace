@@ -20,18 +20,12 @@ export const navLinks = [
       { label: "Offline Counselling", href: "/offline-counselling" },
     ],
   },
-  {
-    label: "Resources",
-    href: "/resources",
-    group: [
-      { label: "Resources", href: "/resources" },
-      { label: "Assessments", href: "/assessments" },
-      { label: "FAQs", href: "/faqs" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-    ],
-  },
+  { label: "Resources", href: "/resources" },
+  { label: "Assessments", href: "/assessments" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ];
 
 /** Flat list used by the mobile menu and the footer. */

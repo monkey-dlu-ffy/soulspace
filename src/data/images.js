@@ -62,6 +62,10 @@ export const professionalImages = {
       src: u("photo-1594824476967-48c8b964273f"),
       alt: "A counsellor listening attentively during a conversation",
     },
+    {
+      src: u("photo-1544005313-94ddf0286df2"),
+      alt: "A counsellor seated in a bright room during a quiet moment",
+    },
   ],
   two: [
     {
@@ -72,6 +76,10 @@ export const professionalImages = {
       src: u("photo-1580489944761-15a19d654956"),
       alt: "A counsellor making notes during a session",
     },
+    {
+      src: u("photo-1537511446984-935f663eb1f4"),
+      alt: "A counsellor at a desk beside a window with soft daylight",
+    },
   ],
   three: [
     {
@@ -81,6 +89,10 @@ export const professionalImages = {
     {
       src: u("photo-1551836022-d5d88e9218df"),
       alt: "A counsellor in conversation with a client",
+    },
+    {
+      src: u("photo-1438761681033-6461ffad8d80"),
+      alt: "Portrait of a counsellor in a warmly lit space",
     },
   ],
 };
@@ -142,5 +154,9 @@ export const sessionImages = [
   {
     src: u("photo-1543269865-cbf427effbad"),
     alt: "A relaxed conversation between two people in a bright room",
+  },
+  {
+    src: u("photo-1516534775068-ba3e7458af70"),
+    alt: "Two people talking quietly across a low table in a calm room",
   },
 ];

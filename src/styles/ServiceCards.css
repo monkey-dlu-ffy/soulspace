@@ -23,8 +23,10 @@
   box-shadow: none;
 }
 
-.service-card__media .carousel {
-  pointer-events: none; /* the whole card is the target, not the slider */
+/* The slider takes its own pointer events so its arrows, dots and swipe
+   gesture all work; the card's own action lives in the body below. */
+.service-card__media .carousel__dots {
+  margin-bottom: calc(-1 * var(--sp-2));
 }
 
 .service-card__media img {

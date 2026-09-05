@@ -85,7 +85,16 @@
 /* ---- Media -------------------------------------------------------------- */
 .hero__media {
   position: relative;
+}
+
+/* The frame belongs to the photograph itself, not to the carousel wrapper —
+   the wrapper also contains the dot indicators, which would otherwise sit
+   inside the border and make it taller than the image. The square corners
+   also need the viewport's radius reset, or the photo pulls away from the
+   frame at each corner. */
+.hero__media .carousel__viewport {
   border: 2px solid var(--ink);
+  border-radius: 0;
 }
 
 /* ---- Responsive --------------------------------------------------------- */

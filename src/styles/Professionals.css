@@ -29,7 +29,13 @@
   box-shadow: none;
 }
 
+/* A column so the actions can be pinned to the foot of every card — the
+   focus lines differ in length, and without this the button rows would sit
+   at three different heights across the row. */
 .pro-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   padding: var(--sp-4) 0.9rem clamp(1.4rem, 2.5vw, 1.8rem);
 }
 
@@ -53,6 +59,10 @@
   border-top: 1px solid var(--line);
 }
 
+.pro-card__actions {
+  margin-top: auto;
+}
+
 .pro-card__focus-label {
   font-size: var(--step--1);
   font-weight: 600;
@@ -65,8 +75,12 @@
   line-height: 1.6;
 }
 
+/* `flex-basis: 0` rather than `auto`, so both buttons come out the same
+   width regardless of how long their labels are. */
 .pro-card__actions .btn {
-  flex: 1 1 auto;
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 /* ---- Helper strip ------------------------------------------------------- */

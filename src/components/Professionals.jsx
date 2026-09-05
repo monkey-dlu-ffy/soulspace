@@ -44,7 +44,6 @@ export default function Professionals() {
                 aspect="4 / 5"
                 shape="portrait"
                 interval={7000 + i * 800}
-                showDots={false}
                 label={`Photographs of ${person.role}`}
               />
             </div>
